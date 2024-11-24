@@ -1,0 +1,69 @@
+# Node.js dependencies (if any Node.js scripts are used)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python virtual environments (if using Python for Lambda functions)
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+env/
+.venv/
+
+# AWS SAM/CloudFormation build artifacts
+.aws-sam/
+.template.yaml
+packaged-template.yaml
+
+# Lambda deployment packages
+*.zip
+
+# AWS CLI configuration and credentials
+.aws/
+*.env
+.env.*
+
+# Logs and temporary files
+logs/
+*.log
+*.tmp
+*.swp
+*.swo
+
+# S3 bucket test artifacts
+test-data/
+*.csv
+*.json
+*.txt
+
+# DynamoDB local (if used for testing locally)
+.dynamodb/
+
+# IDE/Editor specific files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# System files
+.DS_Store
+*.bak
+*.tmp
+
+# Ignore Terraform state files (if Terraform is used)
+*.tfstate
+*.tfstate.backup
+.terraform/
+
+# Ignore coverage reports
+coverage/
+*.lcov
+
+# Ignore pip dependencies (if using Python pip)
+pip-wheel-metadata/
+pip-log.txt

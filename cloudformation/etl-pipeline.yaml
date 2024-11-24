@@ -1,0 +1,59 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  LambdaExtractFunction:
+    Type: 'AWS::Lambda::Function'
+    Properties:
+      Handler: extract.lambda_handler
+      Role: arn:aws:iam::your-account-id:role/your-lambda-role
+      FunctionName: ExtractFunction
+      Code:
+        S3Bucket: your-code-bucket
+        S3Key: lambda/extract.py
+      Runtime: python3.8
+      Timeout: 60
+
+  LambdaTransformFunction:
+    Type: 'AWS::Lambda::Function'
+    Properties:
+      Handler: transform.lambda_handler
+      Role: arn:aws:iam::your-account-id:role/your-lambda-role
+      FunctionName: TransformFunction
+      Code:
+        S3Bucket: your-code-bucket
+        S3Key: lambda/transform.py
+      Runtime: python3.8
+      Timeout: 60
+
+  LambdaLoadFunction:
+    Type: 'AWS::Lambda::Function'
+    Properties:
+      Handler: load.lambda_handler
+      Role: arn:aws:iam::your-account-id:role/your-lambda-role
+      FunctionName: LoadFunction
+      Code:
+        S3Bucket: your-code-bucket
+        S3Key: lambda/load.py
+      Runtime: python3.8
+      Timeout: 60
+
+  DynamoDBTable:
+    Type: 'AWS::DynamoDB::Table'
+    Properties:
+      TableName: ETLProcessedData
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+
+Outputs:
+  ExtractLambda:
+    Value: !Ref LambdaExtractFunction
+  TransformLambda:
+    Value: !Ref LambdaTransformFunction
+  LoadLambda:
+    Value: !Ref LambdaLoadFunction
